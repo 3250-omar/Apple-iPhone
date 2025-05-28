@@ -16,7 +16,7 @@ interface IphoneProps {
     img: string;
     color: string[];
   };
-  scale?: number[];
+  scale?: [number, number, number];
   size?: string;
 }
 
@@ -43,7 +43,7 @@ export function Iphone(props: IphoneProps) {
     });
   }, [materials, props.item]);
   return (
-    <group {...props} dispose={null}>
+    <group dispose={null} scale={props.scale}>
       <mesh
         castShadow
         receiveShadow
