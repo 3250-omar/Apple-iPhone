@@ -11,7 +11,7 @@ import { useEffect } from "react";
 import { Mesh } from "three";
 import * as THREE from "three";
 
-interface IphoneProps {
+ export interface IphoneProps {
   item: {
     img: string;
     color: string[];
@@ -20,7 +20,7 @@ interface IphoneProps {
   size?: string;
 }
 
-export function Iphone(props: IphoneProps) {
+export default function Iphone(props: IphoneProps) {
   const { nodes, materials } = useGLTF("/models/scene.glb");
 
   const texture = useTexture(props.item.img);

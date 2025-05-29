@@ -3,16 +3,13 @@ import { hightlightsSlides } from "../constants";
 import gsap from "gsap";
 import { pauseImg, playImg, replayImg } from "../utiles";
 import { useGSAP } from "@gsap/react";
-import { ScrollTrigger } from "gsap/all";
 
-gsap.registerPlugin(ScrollTrigger);
 interface VideoProps {
   isEnd: boolean;
   startPlay: boolean;
   videoId: number;
   isLastVideo: boolean;
   isPlaying: boolean;
-  goTo: boolean;
 }
 const videInit: VideoProps = {
   isEnd: false,
@@ -20,7 +17,6 @@ const videInit: VideoProps = {
   videoId: 0,
   isLastVideo: false,
   isPlaying: false,
-  goTo: false,
 };
 const VideoCarsoul = () => {
   const videoRef = useRef<(HTMLVideoElement | null)[]>([]);
@@ -48,30 +44,7 @@ const VideoCarsoul = () => {
       case "pause":
         setVideo((pre) => ({ ...pre, isPlaying: !pre.isPlaying }));
         break;
-      case "goto":
-        // Pause all videos
-        videoRef.current.forEach((video) => {
-          if (video) {
-            video.pause();
-            video.currentTime = 0; // Optional: reset to start
-          }
-        });
-        // Play the selected video after state updates
-        setVideo((prev) => ({
-          ...prev,
-          videoId: i,
-          isPlaying: true,
-          startPlay: true,
-          goTo: true,
-        }));
 
-        setTimeout(() => {
-          const selectedVideo = videoRef.current[i];
-          if (selectedVideo) {
-            selectedVideo.play();
-          }
-        }, 0);
-        break;
       default:
         return video;
     }
@@ -183,7 +156,6 @@ const VideoCarsoul = () => {
                 <video
                   id="video"
                   muted
-                  playsInline={true}
                   preload="auto"
                   ref={(el) => {
                     videoRef.current[i] = el;
@@ -222,7 +194,6 @@ const VideoCarsoul = () => {
               ref={(el) => {
                 videoDivRef.current[i] = el;
               }}
-              onClick={() => handleProcess("goto", i)}
             >
               <span
                 className="absolute h-full w-full rounded-full"
@@ -244,6 +215,7 @@ const VideoCarsoul = () => {
           }
         >
           <img
+            loading="lazy"
             src={isLastVideo ? replayImg : !isPlaying ? playImg : pauseImg}
             alt={isLastVideo ? "replay" : !isPlaying ? "play" : "pause"}
           />

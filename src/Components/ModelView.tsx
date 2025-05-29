@@ -2,11 +2,12 @@ import { OrbitControls, PerspectiveCamera, View } from "@react-three/drei";
 
 import * as THREE from "three";
 import Lights from "./Lights";
-import { Suspense } from "react";
+import { Suspense, lazy } from "react";
 import type { modelProps } from "./Model";
-import { Iphone } from "./Iphone";
 import Loader from "./Loader";
-
+import type { IphoneProps } from "./Iphone";
+const LazyIphone: React.LazyExoticComponent<React.ComponentType<IphoneProps>> =
+  lazy(() => import("./Iphone"));
 export interface modelViewProps {
   index: number;
   groupRef: any;
@@ -16,6 +17,7 @@ export interface modelViewProps {
   item: modelProps;
   size: string;
 }
+
 const ModelView = ({
   index,
   groupRef,
@@ -50,11 +52,11 @@ const ModelView = ({
 
       <group
         ref={groupRef}
-        name={`${index === 1} ? 'small' : 'large`}
+        name={index === 1 ? "small" : "large"}
         position={[0, 0, 0]}
       >
         <Suspense fallback={<Loader />}>
-          <Iphone
+          <LazyIphone
             scale={index === 1 ? [15, 15, 15] : [17, 17, 17]}
             item={item}
             size={size}

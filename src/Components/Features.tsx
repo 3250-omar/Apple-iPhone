@@ -3,8 +3,6 @@ import { animationWithGSAP } from "../utiles/animations";
 import { explore1Img, explore2Img, exploreVideo } from "../utiles";
 import { useRef } from "react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-gsap.registerPlugin(ScrollTrigger);
 const Features = () => {
   const videoRef = useRef<HTMLVideoElement | null>(null);
   useGSAP(() => {
@@ -57,6 +55,8 @@ const Features = () => {
                 muted
                 autoPlay
                 ref={videoRef}
+                width={1280} // Set to your actual video dimensions
+                height={720}
               >
                 <source src={exploreVideo} type="video/mp4" />
               </video>
@@ -65,16 +65,22 @@ const Features = () => {
               <div className="feature-video-container">
                 <div className="overflow-hidden h-[50vh] flex-1 ">
                   <img
+                    loading="lazy"
                     src={explore1Img}
                     alt="titanium"
                     className="feature-video g_grow "
+                    width={800}
+                    height={600}
                   />
                 </div>
                 <div className="overflow-hidden h-[50vh] flex-1 ">
                   <img
+                    loading="lazy"
                     src={explore2Img}
                     alt="titanium2"
                     className="feature-video g_grow "
+                    width={800}
+                    height={600}
                   />
                 </div>
               </div>

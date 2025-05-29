@@ -20,6 +20,7 @@ interface AnimationWithGSAP {
         transform?: string;
         duration?: number;
         y?: number;
+        x?: number;
         opacity?:number
         scale?: number;
         ease?: string;
@@ -56,8 +57,9 @@ gsap.to(target , {
     ...animationProps,
     scrollTrigger:{
         trigger:target , 
-        toggleActions:'restart reverse restart reverse',
-        start:'top 85%',
+        toggleActions:'restart none restart none',
+        start:'top bottom',
+        // markers:true , 
         ...scrollProps
     }
 })

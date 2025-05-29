@@ -17,6 +17,7 @@ const HowItWorks = () => {
       scrollTrigger: {
         trigger: "#chip",
         start: "20% bottom",
+        toggleActions: "play none restart none ",
       },
       opacity: 0,
       scale: 2,
@@ -39,7 +40,13 @@ const HowItWorks = () => {
     <section className="common-padding">
       <div className="screen-max-width overflow-hidden">
         <div id="chip" className="flex-center w-full my-20">
-          <img src={chipImg} alt="chip" width={180} height={180} />
+          <img
+            src={chipImg}
+            alt="chip"
+            width={180}
+            height={180}
+            loading="lazy"
+          />
         </div>
 
         <div className="flex flex-col items-center">
@@ -60,6 +67,7 @@ const HowItWorks = () => {
                 src={frameImg}
                 alt="frame"
                 className="bg-transparent relative z-10"
+                loading="lazy"
               />
             </div>
             <div className="hiw-video">

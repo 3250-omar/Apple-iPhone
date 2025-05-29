@@ -4,7 +4,7 @@ const NavBar = () => {
   return (
     <header className=" w-full py-5 px-4 max-sm:px-5">
       <nav className="flex justify-between screen-max-width  ">
-        <img src={appleImg} alt="" width={18} height={18} />
+        <img src={appleImg} alt="" width={18} height={18} loading="lazy" />
         <div className="flex flex-1 justify-center items-center gap-4 max-sm:hidden">
           {navLists.map((nav: string) => (
             <p
@@ -16,8 +16,8 @@ const NavBar = () => {
           ))}
         </div>
         <div className=" flex gap-4 items-baseline *:cursor-pointer">
-          <img src={bagImg} alt="Bag" width={18} height={18} />
-          <img src={searchImg} alt="search" width={18} height={18} />
+          <img src={bagImg} alt="Bag" width={18} height={18} loading="lazy"/>
+          <img src={searchImg} alt="search" width={18} height={18} loading="lazy"/>
         </div>
       </nav>
     </header>

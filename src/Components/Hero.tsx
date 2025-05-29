@@ -50,6 +50,7 @@ const Hero = () => {
             playsInline={true}
             loop={true}
             className="pointer-events-none"
+            preload="none"
           >
             <source src={videoSrc} type="video/mp4" />
           </video>

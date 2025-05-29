@@ -1,9 +1,20 @@
+import { useGSAP } from "@gsap/react";
 import { footerLinks } from "../constants";
+import { animationWithGSAP } from "../utiles/animations";
 
 const Footer = () => {
   const date: Date = new Date();
+  useGSAP(() => {
+    animationWithGSAP({
+      target: "#footer",
+      animationProps: { opacity: 1, x: 0, duration: 1 },
+    });
+  }, []);
   return (
-    <footer className="py-5 sm:px-10 px-5">
+    <footer
+      className="py-5 sm:px-10 px-5 opacity-0 -translate-x-100"
+      id="footer"
+    >
       <div className="screen-max-width">
         <div>
           <p className="font-semibold text-gray text-xs">
@@ -21,11 +32,11 @@ const Footer = () => {
 
         <div className="flex md:flex-row flex-col md:items-center justify-between">
           <p className="font-semibold text-gray text-xs">
-            Copright {date.getFullYear()} @ Apple Inc. All rights reserved.
+            Copyright {date.getFullYear()} @ Apple Inc. All rights reserved.
           </p>
           <div className="flex">
             {footerLinks.map((link, i) => (
-              <p key={link} className="font-semibold text-gray text-xs">
+              <p key={i} className="font-semibold text-gray text-xs">
                 {link}{" "}
                 {i !== footerLinks.length - 1 && (
                   <span className="mx-2"> | </span>
